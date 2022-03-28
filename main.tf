@@ -43,7 +43,7 @@ module "aws-network" {
 module "aws-kubernetes-cluster" {
   source = "github.com/devrndx/module-aws-kubernetes"
 
-  ms_namespace       = "rndxClientSandboxService"
+  ms_namespace       = "rndxClientService"
   env_name           = local.env_name
   aws_region         = local.aws_region
   cluster_name       = local.k8s_cluster_name
@@ -115,7 +115,7 @@ module "traefik" {
   kubernetes_cluster_name      = module.aws-kubernetes-cluster.eks_cluster_name
   kubernetes_cluster_cert_data = module.aws-kubernetes-cluster.eks_cluster_certificate_data
   kubernetes_cluster_endpoint  = module.aws-kubernetes-cluster.eks_cluster_endpoint
-  aws_https_arn = "arn:aws:acm:ap-northeast-2:626141181246:certificate/306a53b0-209a-42bc-88a4-85c4c0edbd1d"
-  
+  aws_https_arn                = "arn:aws:acm:ap-northeast-2:626141181246:certificate/306a53b0-209a-42bc-88a4-85c4c0edbd1d"
+
   eks_nodegroup_id = module.aws-kubernetes-cluster.eks_cluster_nodegroup_id
 }
